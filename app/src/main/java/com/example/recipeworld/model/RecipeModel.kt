@@ -22,7 +22,7 @@ class RecipeDetailModel {
         RecipeService.create()
     }
 
-    fun getRecipeDetails(recipeId: String): Single<RecipeDetailDTO.Recipe> {
+    fun getRecipeDetails(recipeId: String): Single<RecipeDetailDTO.Result> {
         return recipeApiServe.getRecipe("15da9a82656696d6c1b16e258c8fdb17", recipeId)
     }
 }

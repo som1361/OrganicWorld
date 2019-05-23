@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import com.example.recipeworld.R
 import com.example.recipeworld.model.RecipeDetailModel
 import com.example.recipeworld.viewmodel.RecipeDetailViewModel
+import kotlinx.android.synthetic.main.activity_recipe_detail.*
 
 class RecipeDetailActivity: AppCompatActivity() {
     private lateinit var mRecipeDetailViewModel : RecipeDetailViewModel
@@ -20,13 +21,13 @@ class RecipeDetailActivity: AppCompatActivity() {
     }
 
     private fun loadView() {
-        setContentView(R.layout.activity_recipe_search)
+        setContentView(R.layout.activity_recipe_detail)
         mRecipeDetailViewModel.getRecipeDetails(rId)
     }
 
     private fun listenToObservables() {
         mRecipeDetailViewModel.detailResultObservable.subscribe({
-
+            recipe_title.setText(it.recipe.title)
         })
         mRecipeDetailViewModel.detailResultErrorObservable.subscribe({
             showErrorMessage(it.message())

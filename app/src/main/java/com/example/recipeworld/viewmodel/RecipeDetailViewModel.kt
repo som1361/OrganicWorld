@@ -1,7 +1,6 @@
 package com.example.recipeworld.viewmodel
 
 import com.example.recipeworld.model.Entity.RecipeDetailDTO
-import com.example.recipeworld.model.Entity.RecipeSearchDTO
 import com.example.recipeworld.model.RecipeDetailModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -12,7 +11,7 @@ import io.reactivex.subjects.PublishSubject
 import retrofit2.HttpException
 
 class RecipeDetailViewModel (){
-    lateinit var detailResultObservable: PublishSubject<RecipeDetailDTO.Recipe>
+    lateinit var detailResultObservable: PublishSubject<RecipeDetailDTO.Result>
     lateinit var detailResultErrorObservable: PublishSubject<HttpException>
     private var compositeDisposable: CompositeDisposable = CompositeDisposable()
     private lateinit var recipeDetailModel:RecipeDetailModel
@@ -27,8 +26,8 @@ class RecipeDetailViewModel (){
         val disposable: Disposable = recipeDetailModel.getRecipeDetails(recipeId)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribeWith(object : DisposableSingleObserver<RecipeDetailDTO.Recipe>(){
-                override fun onSuccess(t: RecipeDetailDTO.Recipe) {
+            .subscribeWith(object : DisposableSingleObserver<RecipeDetailDTO.Result>(){
+                override fun onSuccess(t: RecipeDetailDTO.Result) {
                     detailResultObservable.onNext(t)
                 }
 

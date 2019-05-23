@@ -3,19 +3,21 @@ package com.example.recipeworld.view
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.Toast
 import com.example.recipeworld.R
 import com.example.recipeworld.model.Entity.RecipeSearchDTO
 import com.example.recipeworld.model.RecipeSearchModel
+import com.example.recipeworld.utils.hideKeyboard
 import com.example.recipeworld.viewmodel.RecipeSearchViewModel
 import kotlinx.android.synthetic.main.activity_recipe_search.*
 
 class RecipeSearchActivity : AppCompatActivity() {
 
     private lateinit var mRecipeSearchViewModel: RecipeSearchViewModel
-    private lateinit var mLinearLayoutManager: LinearLayoutManager
+    private lateinit var mGridLayoutManager: GridLayoutManager
     private lateinit var mRecipeAdapter: RecipeAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,8 +58,8 @@ class RecipeSearchActivity : AppCompatActivity() {
             //Toast.makeText(this, "${recipeId}", Toast.LENGTH_LONG).show()
             goToDetailActivity(recipeId)
         })
-        mLinearLayoutManager = LinearLayoutManager(this)
-        recipe_RecyclerView.layoutManager = mLinearLayoutManager
+        mGridLayoutManager = GridLayoutManager(this, 2)
+        recipe_RecyclerView.layoutManager = mGridLayoutManager
         recipe_RecyclerView.adapter = mRecipeAdapter
         hideProgressBar()
 
@@ -74,15 +76,16 @@ class RecipeSearchActivity : AppCompatActivity() {
     private fun respondToClicks() {
         searchBtn.setOnClickListener({
             showProgressBar()
-            mRecipeSearchViewModel.findRecipes(keyword.text.toString())
+            recipe_search_text.hideKeyboard()
+            mRecipeSearchViewModel.findRecipes(recipe_search_text.text.toString())
         })
     }
 
     private fun hideProgressBar() {
-        progressBar.visibility = View.GONE;
+        recipe_search_progress_bar.visibility = View.GONE;
     }
 
     private fun showProgressBar() {
-        progressBar.visibility = View.VISIBLE;
+        recipe_search_progress_bar.visibility = View.VISIBLE;
     }
 }

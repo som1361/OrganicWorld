@@ -15,7 +15,7 @@ interface RecipeService {
     fun searchRecipe(@Query("key") key: String, @Query("q") q: String ) : Single<RecipeSearchDTO.Recipes>
 
     @GET ("get")
-    fun getRecipe(@Query("key") key: String, @Query("rId") rId: String) : Single<RecipeDetailDTO.Recipe>
+    fun getRecipe(@Query("key") key: String, @Query("rId") rId: String) : Single<RecipeDetailDTO.Result>
 
     companion object {
         fun create(): RecipeService {
