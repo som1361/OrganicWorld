@@ -43,7 +43,7 @@ search_progress_bar.hide()
 
     private fun updateOrganicList(it: OrganicSearchDTO.Organics?) {
         if (it != null) {
-            mOrganicAdapter.updateList(it.organics)
+            mOrganicAdapter.updateList(it.recipes)
             mOrganicAdapter.notifyDataSetChanged()
 
         }
