@@ -1,4 +1,4 @@
-package com.example.recipeworld
+package com.example.organicworld
 
 import org.junit.Test
 

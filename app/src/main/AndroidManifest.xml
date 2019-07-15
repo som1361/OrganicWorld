@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.recipeworld">
+          package="com.example.organicworld">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
@@ -11,14 +11,14 @@
             android:usesCleartextTraffic="true"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".view.RecipeSearchActivity">
+        <activity android:name=".view.OrganicSearchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".view.RecipeDetailActivity"></activity>
+        <activity android:name=".view.OrganicDetailActivity"></activity>
     </application>
 
 </manifest>

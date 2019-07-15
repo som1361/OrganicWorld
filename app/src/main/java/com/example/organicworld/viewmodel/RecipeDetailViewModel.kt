@@ -1,7 +1,7 @@
-package com.example.recipeworld.viewmodel
+package com.example.organicworld.viewmodel
 
-import com.example.recipeworld.model.Entity.RecipeDetailDTO
-import com.example.recipeworld.model.RecipeDetailModel
+import com.example.organicworld.model.Entity.OrganicDetailDTO
+import com.example.organicworld.model.OrganicDetailModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -10,24 +10,24 @@ import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 import retrofit2.HttpException
 
-class RecipeDetailViewModel (){
-    lateinit var detailResultObservable: PublishSubject<RecipeDetailDTO.Result>
+class OrganicDetailViewModel (){
+    lateinit var detailResultObservable: PublishSubject<OrganicDetailDTO.Result>
     lateinit var detailResultErrorObservable: PublishSubject<HttpException>
     private var compositeDisposable: CompositeDisposable = CompositeDisposable()
-    private lateinit var recipeDetailModel:RecipeDetailModel
+    private lateinit var organicDetailModel:OrganicDetailModel
 
-    constructor(mRecipeModel:RecipeDetailModel):this(){
-        recipeDetailModel = mRecipeModel
+    constructor(mOrganicModel:OrganicDetailModel):this(){
+        organicDetailModel = mOrganicModel
         detailResultObservable = PublishSubject.create()
         detailResultErrorObservable = PublishSubject.create()
     }
 
-    fun getRecipeDetails(recipeId: String)  {
-        val disposable: Disposable = recipeDetailModel.getRecipeDetails(recipeId)
+    fun getOrganicDetails(organicId: String)  {
+        val disposable: Disposable = organicDetailModel.getOrganicDetails(organicId)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribeWith(object : DisposableSingleObserver<RecipeDetailDTO.Result>(){
-                override fun onSuccess(t: RecipeDetailDTO.Result) {
+            .subscribeWith(object : DisposableSingleObserver<OrganicDetailDTO.Result>(){
+                override fun onSuccess(t: OrganicDetailDTO.Result) {
                     detailResultObservable.onNext(t)
                 }
 
